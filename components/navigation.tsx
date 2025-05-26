@@ -37,7 +37,7 @@ export default function Navigation() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <motion.div className="text-2xl font-bold text-red-500" whileHover={{ scale: 1.05 }}>
-            DA
+            SAH
           </motion.div>
 
           {/* Desktop Navigation */}

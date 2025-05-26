@@ -14,7 +14,7 @@ export default function ProjectsSection() {
       description:
         "Engaged with local communities, including visits to 15 lower-middle-class households and interactions with 5 local vendors, to raise awareness about the importance of education and encourage school enrollment for their children. Organized a door-to-door campaign to collect funds from local residents and shop owners for children's school fees. Reached out to 10 nearby schools to secure admissions for children whose families were convinced by myself to prioritize education.",
       image: "/7.jpg?height=400&width=600",
-      year: "2024",
+      year: "2016",
     },
     {
       title: "Knorr Flavorverse",
