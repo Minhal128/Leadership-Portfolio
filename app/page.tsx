@@ -9,6 +9,7 @@ import ServicesSection from "@/components/services-section"
 import ToolkitSection from "@/components/toolkit-section"
 import AchievementsSection from "@/components/achievements-section"
 import ProjectsSection from "@/components/projects-section"
+import TestimonialsSection from "@/components/testimonials-section"
 import ContactSection from "@/components/contact-section"
 import Navigation from "@/components/navigation"
 
@@ -36,13 +37,13 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+    <div className="min-h-screen bg-slate-900 text-white overflow-x-hidden">
       {/* Dot pattern background */}
-      <div className="fixed inset-0 opacity-20 pointer-events-none">
+      <div className="fixed inset-0 opacity-10 pointer-events-none">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `radial-gradient(circle, #dc2626 1px, transparent 1px)`,
+            backgroundImage: `radial-gradient(circle, #3b82f6 1px, transparent 1px)`,
             backgroundSize: "30px 30px",
           }}
         />
@@ -53,6 +54,7 @@ export default function Home() {
       <AboutSection />
       <AchievementsSection />
       <ProjectsSection />
+      <TestimonialsSection />
       <ContactSection />
     </div>
   )

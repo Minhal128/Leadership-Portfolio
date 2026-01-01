@@ -1,44 +1,90 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Card } from "@/components/ui/card"
-import { ChevronLeft, ChevronRight, Briefcase } from "lucide-react"
+import { GraduationCap, Users, Globe, X } from "lucide-react"
 
 export default function ProjectsSection() {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [flippedCard, setFlippedCard] = useState<number | null>(null)
 
-  const projects = [
+  const impactAreas = [
     {
-      title: "Taleem e Aam (Education for Everyone)",
-      description:
-        "Engaged with local communities, including visits to 15 lower-middle-class households and interactions with 5 local vendors, to raise awareness about the importance of education and encourage school enrollment for their children. Organized a door-to-door campaign to collect funds from local residents and shop owners for children's school fees. Reached out to 10 nearby schools to secure admissions for children whose families were convinced by myself to prioritize education.",
-      image: "/7.jpg?height=400&width=600",
-      year: "2016",
+      id: 1,
+      title: "🎓 Education Advocacy",
+      icon: GraduationCap,
+      summary: "Led and collaborated on youth-driven education initiatives focused on access, awareness and community engagement.",
+      projects: [
+        {
+          name: "Azm-e-Naujawan – Social Action Project",
+          role: "Team Lead",
+          problem: "Lack of awareness about importance of education in underprivileged communities",
+          actions: [
+            "Led team of 5 members",
+            "Designed awareness sessions",
+            "Raised funds for the school fees of kids",
+            "Conducted school/community outreach"
+          ],
+          impact: "Reached 10 underprivileged families and raised awareness about the importance of education."
+        },
+        {
+          name: "Aspire Institute – Education Collaboration",
+          role: "IT Domain Leader / Mentor",
+          actions: [
+            "Conducted session on Resume Writing",
+            "Conducted a 4-week course on Microsoft Power BI",
+            "Provided career guidance to university students"
+          ],
+          outcome: "100+ students taught and mentored"
+        }
+      ]
     },
     {
-      title: "Knorr Flavorverse",
-      description:
-        "Led a team of three members to brainstorm and develop rebranding ideas for Knorr noodles to position it as the top choice for experimental food lovers. Conducted weekly meetings to track project progress, assign tasks, and ensure timely completion by all team members. Designed and finalized the presentation slides to ensure clarity and team alignment by incorporating feedback gathered through collaborative discussions. Finalized and submitted the presentation after discussing it with the team to ensure clarity and consistency. Secured a spot in the Top 50 of Unilever Talent Hunt 2025 to demonstrate our cross-disciplinary skills despite coming from a computer science background.",
-      image: "/8.jpg?height=400&width=600",
-      year: "2025",
+      id: 2,
+      title: "🤝 Youth Mentorship",
+      icon: Users,
+      summary: "Youth Mentorship & Career Guidance through personalized 1:1 sessions and skill development programs.",
+      projects: [
+        {
+          name: "Topmate Mentorship Platform",
+          details: [
+            "Conducted 1:1 mentorship sessions",
+            "Guided students on data careers, LinkedIn optimization, resume writing and personal growth",
+            "Total mentees: 80"
+          ],
+          focusAreas: [
+            "Career clarity",
+            "Skill roadmap",
+            "Confidence building"
+          ]
+        }
+      ]
     },
+    {
+      id: 3,
+      title: "🌍 Community & Environment",
+      icon: Globe,
+      summary: "Community Volunteering & Environmental Action through hands-on initiatives and awareness campaigns.",
+      projects: [
+        {
+          name: "Beach Cleaning Drive – Society for International Education",
+          role: "Volunteer",
+          location: "Seaview, Clifton, Karachi, Pakistan",
+          actions: [
+            "Participated with high school students and US Consulate Professionals in cleanup drive"
+          ],
+          impact: [
+            "Collected 100kg trash from the beach",
+            "Spread awareness among students about cleanliness",
+            "Led a group of 20 students in cleanup drive"
+          ]
+        }
+      ]
+    }
   ]
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length)
-    }, 6000)
-
-    return () => clearInterval(timer)
-  }, [projects.length])
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + projects.length) % projects.length)
+  const handleCardClick = (cardId: number) => {
+    setFlippedCard(flippedCard === cardId ? null : cardId)
   }
 
   return (
@@ -51,82 +97,150 @@ export default function ProjectsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-red-500">Featured Projects</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-blue-500">Impact Areas</h2>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            Community-driven initiatives that demonstrate leadership impact and social responsibility
+            Key areas where I've made meaningful contributions through leadership, mentorship, and community engagement
           </p>
         </motion.div>
 
-        <div className="relative max-w-6xl mx-auto">
-          <div className="overflow-hidden rounded-lg">
-            <AnimatePresence mode="wait">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {impactAreas.map((area) => {
+            const Icon = area.icon
+            const isFlipped = flippedCard === area.id
+            
+            return (
               <motion.div
-                key={currentIndex}
-                initial={{ opacity: 0, x: 300 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -300 }}
-                transition={{ duration: 0.5 }}
+                key={area.id}
+                className="relative h-96 cursor-pointer"
+                onClick={() => handleCardClick(area.id)}
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
               >
-                <Card className="bg-gray-900/50 border-red-600/30 p-8 min-h-[500px]">
-                  <div className="grid md:grid-cols-2 gap-8 items-center h-full">
-                    {/* Left side - Project details */}
-                    <div className="space-y-6">
-                      <div className="flex items-center space-x-4">
-                        <div className="bg-blue-600 p-3 rounded-full">
-                          <Briefcase className="w-8 h-8 text-white" />
+                <AnimatePresence mode="wait">
+                  {!isFlipped ? (
+                    <motion.div
+                      key="front"
+                      initial={{ rotateY: 0 }}
+                      exit={{ rotateY: 90 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute inset-0"
+                    >
+                      <Card className="bg-slate-800/50 border-blue-600/30 p-8 h-full flex flex-col items-center justify-center text-center hover:border-blue-500/50 transition-colors">
+                        <Icon className="w-16 h-16 text-blue-500 mb-6" />
+                        <h3 className="text-2xl font-bold text-white mb-4">{area.title}</h3>
+                        <p className="text-gray-300 text-sm leading-relaxed">{area.summary}</p>
+                        <div className="mt-6 text-blue-400 text-sm font-medium">Click to explore →</div>
+                      </Card>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="back"
+                      initial={{ rotateY: -90 }}
+                      animate={{ rotateY: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute inset-0"
+                    >
+                      <Card className="bg-slate-800/50 border-blue-600/30 p-6 h-full overflow-y-auto">
+                        <div className="flex justify-between items-start mb-4">
+                          <h3 className="text-xl font-bold text-white">{area.title}</h3>
+                          <button 
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              setFlippedCard(null)
+                            }}
+                            className="text-gray-400 hover:text-white"
+                          >
+                            <X className="w-5 h-5" />
+                          </button>
                         </div>
-                        <span className="text-red-400 font-semibold text-lg">{projects[currentIndex].year}</span>
-                      </div>
-
-                      <div>
-                        <h3 className="text-3xl font-bold text-white mb-6">{projects[currentIndex].title}</h3>
-                        <p className="text-gray-300 leading-relaxed text-lg">{projects[currentIndex].description}</p>
-                      </div>
-                    </div>
-
-                    {/* Right side - Project image */}
-                    <div className="relative">
-                      <div className="bg-gray-700 rounded-lg overflow-hidden aspect-video">
-                        <img
-                          src={projects[currentIndex].image || "/placeholder.svg"}
-                          alt={projects[currentIndex].title}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                      </div>
-                    </div>
-                  </div>
-                </Card>
+                        
+                        <div className="space-y-6">
+                          {area.projects.map((project, index) => (
+                            <div key={index} className="border-l-2 border-blue-600 pl-4">
+                              <h4 className="font-semibold text-blue-400 mb-2">{project.name}</h4>
+                              
+                              {project.role && (
+                                <p className="text-sm text-gray-300 mb-2">
+                                  <span className="font-medium">Role:</span> {project.role}
+                                </p>
+                              )}
+                              
+                              {project.location && (
+                                <p className="text-sm text-gray-300 mb-2">
+                                  <span className="font-medium">Location:</span> {project.location}
+                                </p>
+                              )}
+                              
+                              {project.problem && (
+                                <p className="text-sm text-gray-300 mb-2">
+                                  <span className="font-medium">Problem:</span> {project.problem}
+                                </p>
+                              )}
+                              
+                              {project.actions && (
+                                <div className="mb-2">
+                                  <span className="font-medium text-gray-300 text-sm">Actions:</span>
+                                  <ul className="text-sm text-gray-400 mt-1 space-y-1">
+                                    {project.actions.map((action, i) => (
+                                      <li key={i}>• {action}</li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              )}
+                              
+                              {project.details && (
+                                <div className="mb-2">
+                                  <ul className="text-sm text-gray-400 space-y-1">
+                                    {project.details.map((detail, i) => (
+                                      <li key={i}>• {detail}</li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              )}
+                              
+                              {project.focusAreas && (
+                                <div className="mb-2">
+                                  <span className="font-medium text-gray-300 text-sm">Focus areas:</span>
+                                  <ul className="text-sm text-gray-400 mt-1 space-y-1">
+                                    {project.focusAreas.map((area, i) => (
+                                      <li key={i}>• {area}</li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              )}
+                              
+                              {project.impact && (
+                                <p className="text-sm text-green-400">
+                                  <span className="font-medium">Impact:</span> {project.impact}
+                                </p>
+                              )}
+                              
+                              {project.outcome && (
+                                <p className="text-sm text-green-400">
+                                  <span className="font-medium">Outcome:</span> {project.outcome}
+                                </p>
+                              )}
+                              
+                              {Array.isArray(project.impact) && (
+                                <div>
+                                  <span className="font-medium text-green-400 text-sm">Impact:</span>
+                                  <ul className="text-sm text-green-400 mt-1 space-y-1">
+                                    {project.impact.map((impact, i) => (
+                                      <li key={i}>• {impact}</li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </Card>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Navigation buttons */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition-colors duration-300 z-10"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition-colors duration-300 z-10"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-
-          {/* Dots indicator */}
-          <div className="flex justify-center mt-8 space-x-3">
-            {projects.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                  index === currentIndex ? "bg-red-500" : "bg-gray-600"
-                }`}
-              />
-            ))}
-          </div>
+            )
+          })}
         </div>
       </div>
     </section>

@@ -10,6 +10,13 @@ export default function AchievementsSection() {
 
   const achievements = [
     {
+      title: "Top 1% Mentor - Topmate",
+      description: "Got recognized as a Top 1% Mentor on the platform for mentoring multiple students on resume building, linkedin optimization and career guidance on breaking into the domain of data.",
+      icon: <Trophy className="w-12 h-12 text-yellow-500" />,
+      image: "/2.jpg?height=300&width=400",
+      year: "2025",
+    },
+    {
       title: "Resume Competition Winner",
       description: "Won a Resume Competition organized by ASME Quest Chapter after competing against 40 individuals.",
       icon: <Trophy className="w-12 h-12 text-yellow-500" />,
@@ -51,7 +58,7 @@ export default function AchievementsSection() {
       title: "Bridge Scholarship Recipient",
       description:
         "Received a national level scholarship from Aga Khan Board named as 'Bridge Scholarship' which covered the whole expenses of my intermediate education.",
-      icon: <GraduationCap className="w-12 h-12 text-red-500" />,
+      icon: <GraduationCap className="w-12 h-12 text-blue-500" />,
       image: "/6.jpg?height=300&width=400",
       year: "2023",
     },
@@ -83,7 +90,7 @@ export default function AchievementsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-red-500">Key Achievements</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-blue-500">Key Achievements</h2>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
             Milestones and recognitions that showcase my leadership and expertise in data analytics
           </p>
@@ -99,12 +106,12 @@ export default function AchievementsSection() {
                 exit={{ opacity: 0, x: -300 }}
                 transition={{ duration: 0.5 }}
               >
-                <Card className="bg-gray-900/50 border-red-600/30 p-8">
+                <Card className="bg-slate-800/50 border-blue-600/30 p-8">
                   <div className="grid md:grid-cols-2 gap-8 items-center">
                     <div>
                       <div className="flex items-center mb-4">
                         {achievements[currentIndex].icon}
-                        <span className="ml-4 text-red-400 font-semibold">{achievements[currentIndex].year}</span>
+                        <span className="ml-4 text-blue-400 font-semibold">{achievements[currentIndex].year}</span>
                       </div>
                       <h3 className="text-2xl font-bold text-white mb-4">{achievements[currentIndex].title}</h3>
                       <p className="text-gray-300 leading-relaxed">{achievements[currentIndex].description}</p>
@@ -126,13 +133,13 @@ export default function AchievementsSection() {
           {/* Navigation buttons */}
           <button
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-red-600 hover:bg-red-700 text-white p-2 rounded-full transition-colors duration-300"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full transition-colors duration-300"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-red-600 hover:bg-red-700 text-white p-2 rounded-full transition-colors duration-300"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full transition-colors duration-300"
           >
             <ChevronRight className="w-6 h-6" />
           </button>
@@ -144,7 +151,7 @@ export default function AchievementsSection() {
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                  index === currentIndex ? "bg-red-500" : "bg-gray-600"
+                  index === currentIndex ? "bg-blue-500" : "bg-gray-600"
                 }`}
               />
             ))}

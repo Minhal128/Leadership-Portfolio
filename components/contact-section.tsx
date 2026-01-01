@@ -9,8 +9,8 @@ export default function ContactSection() {
     {
       icon: Mail,
       label: "Email",
-      value: "abidhassanjafri31@gmail.com",
-      href: "mailto:abidhassanjafri31@gmail.com",
+      value: "abidhassanjaffri31@gmail.com",
+      href: "mailto:abidhassanjaffri31@gmail.com",
       color: "from-blue-500 to-cyan-500"
     },
     {
@@ -32,8 +32,8 @@ export default function ContactSection() {
   return (
     <section id="contact" className="py-20 relative overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800"></div>
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-red-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800"></div>
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl"></div>
       
       <div className="container mx-auto px-4 relative z-10">
@@ -45,18 +45,18 @@ export default function ContactSection() {
           transition={{ duration: 0.8 }}
         >
           <motion.div
-            className="inline-flex items-center gap-2 bg-red-500/10 border border-red-500/20 rounded-full px-4 py-2 mb-6"
+            className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-2 mb-6"
             initial={{ scale: 0.9 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <MessageCircle className="w-4 h-4 text-red-400" />
-            <span className="text-red-400 text-sm font-medium">Ready to Connect</span>
+            <MessageCircle className="w-4 h-4 text-blue-400" />
+            <span className="text-blue-400 text-sm font-medium">Ready to Connect</span>
           </motion.div>
           
           <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">
-            Let's Connect
+            Open to collaborations, mentorship, and impact-driven opportunities.
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
             Ready to transform your data into actionable insights? Reach out and let's discuss your project!
@@ -101,7 +101,7 @@ export default function ContactSection() {
                     </div>
 
                     {/* Hover Effect */}
-                    <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-gradient-to-r group-hover:from-red-500/20 group-hover:via-transparent group-hover:to-blue-500/20 transition-all duration-300"></div>
+                    <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-gradient-to-r group-hover:from-blue-500/20 group-hover:via-transparent group-hover:to-blue-500/20 transition-all duration-300"></div>
                   </div>
                 </motion.div>
               )

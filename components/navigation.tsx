@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Menu, X } from "lucide-react"
+import Image from "next/image"
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -19,25 +20,31 @@ export default function Navigation() {
   const navItems = [
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
-    // { name: "Services", href: "#services" },
     { name: "Achievements", href: "#achievements" },
-    { name: "Projects", href: "#projects" },
+    { name: "Impact Areas", href: "#projects" },
+    { name: "Testimonials", href: "#testimonials" },
     { name: "Contact", href: "#contact" },
   ]
 
   return (
     <motion.nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-black/90 backdrop-blur-md border-b border-red-600/20" : "bg-transparent"
+        scrolled ? "bg-slate-900/90 backdrop-blur-md border-b border-blue-600/20" : "bg-transparent"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <motion.div className="text-2xl font-bold text-red-500" whileHover={{ scale: 1.05 }}>
-            SAH
+        <div className="flex items-center justify-between h-20">
+          <motion.div className="flex items-center" whileHover={{ scale: 1.05 }}>
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={60}
+              height={60}
+              className="h-16 w-auto"
+            />
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -46,7 +53,7 @@ export default function Navigation() {
               <motion.a
                 key={item.name}
                 href={item.href}
-                className="text-white hover:text-red-500 transition-colors duration-300"
+                className="text-white hover:text-blue-500 transition-colors duration-300"
                 whileHover={{ scale: 1.1 }}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -66,7 +73,7 @@ export default function Navigation() {
         {/* Mobile Navigation */}
         {isOpen && (
           <motion.div
-            className="md:hidden bg-black/95 backdrop-blur-md border-t border-red-600/20"
+            className="md:hidden bg-slate-900/95 backdrop-blur-md border-t border-blue-600/20"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -76,7 +83,7 @@ export default function Navigation() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="block text-white hover:text-red-500 transition-colors duration-300 px-4"
+                  className="block text-white hover:text-blue-500 transition-colors duration-300 px-4"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
